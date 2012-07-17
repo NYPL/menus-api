@@ -36,7 +36,7 @@ Eventually, there will be a sign-up site for obtaining tokens and getting update
 ####example curl
 
 ```bash
-curl "http://menusstage.herokuapp.com/api/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4"
+curl "http://menus.nypl.org/api/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4"
 ```
 
 ####example xml response
@@ -94,7 +94,7 @@ curl "http://menusstage.herokuapp.com/api/menus/12848.xml?token=flillduynijyk2u6
 We limit requests to **5000 per day** either per token or per IP address and to **2 requests per second**. You can check the returned HTTP headers of any API request to see your current status:
 
 ```bash
-curl -i "http://api.menus.nypl.org/dishes/13?token=flillduynijyk2u6zemo36mcg4"
+curl -i "http://menus.nypl.org/api/dishes/13?token=flillduynijyk2u6zemo36mcg4"
 HTTP/1.1 200 OK 
 Content-Type: application/json
 X-Ratelimit-Limit: 5000
@@ -124,16 +124,16 @@ Pagination Info is Contained in the Link **Header** for Indexes
 ####example curl
 
 ```bash
-curl -i "http://api.menus.nypl.org/dishes?page=3&token=flillduynijyk2u6zemo36mcg4"
+curl -i "http://menus.nypl.org/api/dishes?page=3&token=flillduynijyk2u6zemo36mcg4"
 ```
 
 ####example Link Header
 
 ```bash	 
-<http://api.menus.nypl.org/dishes?sort_by=date&per_page=100&page=1>; rel="first", 
-<http://api.menus.nypl.org/dishes?sort_by=date&per_page=100&page=2>; rel="prev", 
-<http://api.menus.nypl.org/dishes?sort_by=date&per_page=100&page=4>; rel="next", 
-<http://api.menus.nypl.org/dishes?sort_by=date&per_page=100&page=3219>; rel="last"
+<http://menus.nypl.org/api/dishes?sort_by=date&per_page=100&page=1>; rel="first", 
+<http://menus.nypl.org/api/dishes?sort_by=date&per_page=100&page=2>; rel="prev", 
+<http://menus.nypl.org/api/dishes?sort_by=date&per_page=100&page=4>; rel="next", 
+<http://menus.nypl.org/api/dishes?sort_by=date&per_page=100&page=3219>; rel="last"
 ```
 
 For examples on how to parse the **link header**, [this gist](https://gist.github.com/2946021) showcases a javascript method (**parseLinkHeader**) and [this file](https://github.com/eclipse/egit-github/blob/master/org.eclipse.egit.github.core/src/org/eclipse/egit/github/core/client/PageLinks.java#L43-75) is a java version, written to be used with the Github API, which is where this pagination concept comes from.
@@ -143,7 +143,7 @@ For examples on how to parse the **link header**, [this gist](https://gist.githu
 ###GET /menus
  
 ```bash
-$ curl "http://api.menus.nypl.org/menus?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/menus?token=flillduynijyk2u6zemo36mcg4"
 ```
 	
 ####required query parameters
@@ -214,15 +214,15 @@ status: "?status=under_review" || "?status=complete" || "?status=to_transcribe"
             "first_page_full_height": 4978,
             "links": [
                 {
-                    "href": "http://api.menus.nypl.org/menus/27228",
+                    "href": "http://menus.nypl.org/api/menus/27228",
                     "rel": "self"
                 },
                 {
-                    "href": "http://api.menus.nypl.org/menus/27228/pages",
+                    "href": "http://menus.nypl.org/api/menus/27228/pages",
                     "rel": "pages"
                 },
                 {
-                    "href": "http://api.menus.nypl.org/menus/27228/dishes",
+                    "href": "http://menus.nypl.org/api/menus/27228/dishes",
                     "rel": "dishes"
                 }
             ]
@@ -237,7 +237,7 @@ status: "?status=under_review" || "?status=complete" || "?status=to_transcribe"
 ###GET /menus/{id}
 
 ```bash
-$ curl "http://api.menus.nypl.org/menus/31729?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/menus/31729?token=flillduynijyk2u6zemo36mcg4"
 ```
 	
 ####required query parameters
@@ -283,15 +283,15 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
     "first_page_full_height": 4686,
     "links": [
         {
-            "href": "http://api.menus.nypl.org/menus",
+            "href": "http://menus.nypl.org/api/menus",
             "rel": "index"
         },
         {
-            "href": "http://api.menus.nypl.org/menus/31729/pages",
+            "href": "http://menus.nypl.org/api/menus/31729/pages",
             "rel": "pages"
         },
         {
-            "href": "http://api.menus.nypl.org/menus/31729/dishes",
+            "href": "http://menus.nypl.org/api/menus/31729/dishes",
             "rel": "dishes"
         }
     ]
@@ -301,7 +301,7 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /menus/{id}/pages
 
 ```bash
-$ curl "http://api.menus.nypl.org/menus/31729/pages?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/menus/31729/pages?token=flillduynijyk2u6zemo36mcg4"
 ```
 	
 ####required query parameters
@@ -323,11 +323,11 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 {
 	"links": [
         {
-            "href": "http://api.menus.nypl.org/menus/31729",
+            "href": "http://menus.nypl.org/api/menus/31729",
             "rel": "parent"
         },
         {
-            "href": "http://api.menus.nypl.org/menus",
+            "href": "http://menus.nypl.org/api/menus",
             "rel": "index"
         }
     ],
@@ -356,7 +356,7 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
                     "updated_at": "2012-07-03T20:28:37Z",
                     "links": [
                         {
-                        	"href": "http://api.menus.nypl.org/dishes/375814",
+                        	"href": "http://menus.nypl.org/api/dishes/375814",
                             "rel": "self"
                         }
                     ]
@@ -376,7 +376,7 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /menus/{id}/dishes
 
 ```bash
-$ curl "http://api.menus.nypl.org/menus/31729/dishes?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/menus/31729/dishes?token=flillduynijyk2u6zemo36mcg4"
 ```
 	
 ####required query parameters
@@ -396,11 +396,11 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 {	
 	"links": [
         {
-            "href": "http://api.menus.nypl.org/menus/31729", 
+            "href": "http://menus.nypl.org/api/menus/31729", 
             "rel": "parent"
         }, 
         {
-            "href": "http://api.menus.nypl.org/menus", 
+            "href": "http://menus.nypl.org/api/menus", 
             "rel": "index"
         }
     ],
@@ -415,7 +415,7 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
           	"updated_at": "2012-07-03T20:28:37Z",
             "links": [
                 {
-                    "href": "http://api.menus.nypl.org/dishes/139476",
+                    "href": "http://menus.nypl.org/api/dishes/139476",
                     "rel": "self"
                 }
             ]
@@ -430,7 +430,7 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /menus/search
 
 ```bash
-$ curl "http://api.menus.nypl.org/menus/search?query=dinner&token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/menus/search?query=dinner&token=flillduynijyk2u6zemo36mcg4"
 ```
 	
 ####required query parameters
@@ -490,15 +490,15 @@ sort_by: "?sort_by=date" || "?sort_by=name" || "?sort_by=relevance" || "?sort_by
             "first_page_full_height": 5186,
             "links": [
                 {
-                    "href": "http://api.menus.nypl.org/menus/29387",
+                    "href": "http://menus.nypl.org/api/menus/29387",
                     "rel": "self"
                 },
                 {
-                    "href": "http://api.menus.nypl.org/menus/29387/pages",
+                    "href": "http://menus.nypl.org/api/menus/29387/pages",
                     "rel": "pages"
                 },
                 {
-                    "href": "http://api.menus.nypl.org/menus/29387/dishes",
+                    "href": "http://menus.nypl.org/api/menus/29387/dishes",
                     "rel": "dishes"
                 }
             ]
@@ -516,7 +516,7 @@ sort_by: "?sort_by=date" || "?sort_by=name" || "?sort_by=relevance" || "?sort_by
 ###GET /dishes 
 
 ```bash
-$ curl "http://api.menus.nypl.org/dishes?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/dishes?token=flillduynijyk2u6zemo36mcg4"
 ```
 	
 ####required query parameters
@@ -561,11 +561,11 @@ sort_by: "?sort_by=name" || "?sort_by=date" || "?sort_by=popularity" || "?sort_b
             "highest_price": null,
             "links": [
                 {
-                    "href": "http://api.menus.nypl.org/dishes/351645",
+                    "href": "http://menus.nypl.org/api/dishes/351645",
                     "rel": "self"
                 },
                 {
-                    "href": "http://api.menus.nypl.org/dishes/351645/menus",
+                    "href": "http://menus.nypl.org/api/dishes/351645/menus",
                     "rel": "menus"
                 }
             ]
@@ -580,7 +580,7 @@ sort_by: "?sort_by=name" || "?sort_by=date" || "?sort_by=popularity" || "?sort_b
 ###GET /dishes/{id}
 
 ```bash
-$ curl "http://api.menus.nypl.org/dishes/329313?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/dishes/329313?token=flillduynijyk2u6zemo36mcg4"
 ```
 	
 ####required query parameters
@@ -609,11 +609,11 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
     "highest_price": "$0.10",
     "links": [
         {
-            "href": "http://api.menus.nypl.org/dishes",
+            "href": "http://menus.nypl.org/api/dishes",
             "rel": "index"
         },
         {
-            "href": "http://api.menus.nypl.org/dishes/329313/menus",
+            "href": "http://menus.nypl.org/api/dishes/329313/menus",
             "rel": "menus"
         }
     ]
@@ -623,7 +623,7 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /dishes/{id}/menus
 
 ```bash
-$ curl "http://api.menus.nypl.org/dishes/195/menus?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/dishes/195/menus?token=flillduynijyk2u6zemo36mcg4"
 ```
 	
 ####required query parameters
@@ -643,11 +643,11 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 {
 	"links": [
         {
-            "href": "http://api.menus.nypl.org/dishes/195",
+            "href": "http://menus.nypl.org/api/dishes/195",
             "rel": "parent"
         },
         {
-            "href": "http://api.menus.nypl.org/dishes",
+            "href": "http://menus.nypl.org/api/dishes",
             "rel": "index"
         }
     ],
@@ -682,7 +682,7 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
             "first_page_full_height": 3233,
             "links": [
                 {
-                    "href": "http://api.menus.nypl.org/menus/16674",
+                    "href": "http://menus.nypl.org/api/menus/16674",
                     "rel": "self"
                 }
             ]
@@ -697,7 +697,7 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /dishes/search
 
 ```bash
-$ curl "http://api.menus.nypl.org/dishes/search?query=knish&token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://menus.nypl.org/api/dishes/search?query=knish&token=flillduynijyk2u6zemo36mcg4"
 ```
 
 ####required query parameters
@@ -739,11 +739,11 @@ sort_by: "?sort_by=date" || "?sort_by=name" || "?sort_by=relevance" || "?sort_by
             "highest_price": null,
             "links": [
                 {
-                    "href": "http://api.menus.nypl.org/dishes/153405",
+                    "href": "http://menus.nypl.org/api/dishes/153405",
                     "rel": "self"
                 },
                 {
-                    "href": "http://api.menus.nypl.org/dishes/153405/menus",
+                    "href": "http://menus.nypl.org/api/dishes/153405/menus",
                     "rel": "menus"
                 }
             ]
