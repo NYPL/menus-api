@@ -30,13 +30,71 @@ For this initial, beta release, please email [menusATnyplDOT.org](mailto:menus@n
 
 Eventually, there will be a sign-up site for obtaining tokens and getting updates on the service.
 
+##Formats
+**JSON** is the default and recommended response format for the service. You can obtain the response in **XML** by appending *.xml.* to the call.
+
+####example curl
+
+```bash
+curl "http://menusstage.herokuapp.com/api/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4"
+```
+
+####example xml response
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+  <id type="integer">12848</id>
+  <name></name>
+  <sponsor>HOTEL JERMYN</sponsor>
+  <venue>COMMERCIAL</venue>
+  <event>DINNER</event>
+  <place>SCRANTON, PA</place>
+  <occasion></occasion>
+  <physical-description>CARD; 5.25 X 6.75;</physical-description>
+  <notes></notes>
+  <call-number>1900-2430</call-number>
+  <keywords nil="true"></keywords>
+  <language nil="true"></language>
+  <date type="date">1900-03-14</date>
+  <status>complete</status>
+  <currency nil="true"></currency>
+  <currency-symbol nil="true"></currency-symbol>
+  <location>Hotel Jermyn</location>
+  <location-type nil="true"></location-type>
+  <page-count type="integer">2</page-count>
+  <dish-count type="integer">60</dish-count>
+  <thumbnail-src>http://images.nypl.org/index.php?id=466635&amp;t=r</thumbnail-src>
+  <thumbnail-src-jp2>http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:510d47db-463f-a3d9-e040-e00a18064a99&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=108,108&amp;svc.region=576,240,1735,1735&amp;svc.rotate=0</thumbnail-src-jp2>
+  <large-src>http://images.nypl.org/index.php?id=466635&amp;t=w</large-src>
+  <large-src-jp2>http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:510d47db-463f-a3d9-e040-e00a18064a99&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=1800,0&amp;svc.rotate=0</large-src-jp2>
+  <first-page-aspect>portrait</first-page-aspect>
+  <first-page-full-width type="integer">2215</first-page-full-width>
+  <first-page-full-height type="integer">2887</first-page-full-height>
+  <links type="array">
+    <link>
+      <href>http://menus.nypl.org/api/menus</href>
+      <rel>index</rel>
+    </link>
+    <link>
+      <href>http://menus.nypl.org/api/menus/12848/pages</href>
+      <rel>pages</rel>
+    </link>
+    <link>
+      <href>http://menus.nypl.org/api/menus/12848/dishes</href>
+      <rel>dishes</rel>
+    </link>
+  </links>
+</menu>
+```
+
 
 ##Rate Limiting
 
 We limit requests to **5000 per day** either per token or per IP address and to **2 requests per second**. You can check the returned HTTP headers of any API request to see your current status:
 
 ```bash
-curl -i "http://api.menus.nypl.org/dishes/13"
+curl -i "http://api.menus.nypl.org/dishes/13?token=flillduynijyk2u6zemo36mcg4"
 HTTP/1.1 200 OK 
 Content-Type: application/json
 X-Ratelimit-Limit: 5000
@@ -66,7 +124,7 @@ Pagination Info is Contained in the Link **Header** for Indexes
 ####example curl
 
 ```bash
-curl -i "http://api.menus.nypl.org/dishes?page=3"
+curl -i "http://api.menus.nypl.org/dishes?page=3&token=flillduynijyk2u6zemo36mcg4"
 ```
 
 ####example Link Header

@@ -60,6 +60,11 @@
         </li>
       
         <li>
+          <a href="#formats">Formats</a>
+          
+        </li>
+      
+        <li>
           <a href="#rate-limiting">Rate Limiting</a>
           
         </li>
@@ -174,13 +179,63 @@
 </p>
 <p>Eventually, there will be a sign-up site for obtaining tokens and getting updates on the service.
 
+</p>
+<h2 id='formats'>Formats</h2 id='formats'>
+<p><strong>JSON</strong> is the default and recommended response format for the service. You can obtain the response in <strong>XML</strong> by appending <em>.xml.</em> to the call.
 
 </p>
+<h4>example curl</h4>
+<pre><code class="bash">curl <span class="string">"http://menusstage.herokuapp.com/api/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>example xml response</h4>
+<pre><code class="xml"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="tag">&lt;<span class="title">menu</span>></span>
+  <span class="tag">&lt;<span class="title">id</span> <span class="attribute">type</span>=<span class="value">"integer"</span>></span>12848<span class="tag">&lt;/<span class="title">id</span>></span>
+  <span class="tag">&lt;<span class="title">name</span>></span><span class="tag">&lt;/<span class="title">name</span>></span>
+  <span class="tag">&lt;<span class="title">sponsor</span>></span>HOTEL JERMYN<span class="tag">&lt;/<span class="title">sponsor</span>></span>
+  <span class="tag">&lt;<span class="title">venue</span>></span>COMMERCIAL<span class="tag">&lt;/<span class="title">venue</span>></span>
+  <span class="tag">&lt;<span class="title">event</span>></span>DINNER<span class="tag">&lt;/<span class="title">event</span>></span>
+  <span class="tag">&lt;<span class="title">place</span>></span>SCRANTON, PA<span class="tag">&lt;/<span class="title">place</span>></span>
+  <span class="tag">&lt;<span class="title">occasion</span>></span><span class="tag">&lt;/<span class="title">occasion</span>></span>
+  <span class="tag">&lt;<span class="title">physical-description</span>></span>CARD; 5.25 X 6.75;<span class="tag">&lt;/<span class="title">physical-description</span>></span>
+  <span class="tag">&lt;<span class="title">notes</span>></span><span class="tag">&lt;/<span class="title">notes</span>></span>
+  <span class="tag">&lt;<span class="title">call-number</span>></span>1900-2430<span class="tag">&lt;/<span class="title">call-number</span>></span>
+  <span class="tag">&lt;<span class="title">keywords</span> <span class="attribute">nil</span>=<span class="value">"true"</span>></span><span class="tag">&lt;/<span class="title">keywords</span>></span>
+  <span class="tag">&lt;<span class="title">language</span> <span class="attribute">nil</span>=<span class="value">"true"</span>></span><span class="tag">&lt;/<span class="title">language</span>></span>
+  <span class="tag">&lt;<span class="title">date</span> <span class="attribute">type</span>=<span class="value">"date"</span>></span>1900-03-14<span class="tag">&lt;/<span class="title">date</span>></span>
+  <span class="tag">&lt;<span class="title">status</span>></span>complete<span class="tag">&lt;/<span class="title">status</span>></span>
+  <span class="tag">&lt;<span class="title">currency</span> <span class="attribute">nil</span>=<span class="value">"true"</span>></span><span class="tag">&lt;/<span class="title">currency</span>></span>
+  <span class="tag">&lt;<span class="title">currency-symbol</span> <span class="attribute">nil</span>=<span class="value">"true"</span>></span><span class="tag">&lt;/<span class="title">currency-symbol</span>></span>
+  <span class="tag">&lt;<span class="title">location</span>></span>Hotel Jermyn<span class="tag">&lt;/<span class="title">location</span>></span>
+  <span class="tag">&lt;<span class="title">location-type</span> <span class="attribute">nil</span>=<span class="value">"true"</span>></span><span class="tag">&lt;/<span class="title">location-type</span>></span>
+  <span class="tag">&lt;<span class="title">page-count</span> <span class="attribute">type</span>=<span class="value">"integer"</span>></span>2<span class="tag">&lt;/<span class="title">page-count</span>></span>
+  <span class="tag">&lt;<span class="title">dish-count</span> <span class="attribute">type</span>=<span class="value">"integer"</span>></span>60<span class="tag">&lt;/<span class="title">dish-count</span>></span>
+  <span class="tag">&lt;<span class="title">thumbnail-src</span>></span>http://images.nypl.org/index.php?id=466635&amp;amp;t=r<span class="tag">&lt;/<span class="title">thumbnail-src</span>></span>
+  <span class="tag">&lt;<span class="title">thumbnail-src-jp2</span>></span>http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;amp;rft_id=urn:uuid:510d47db-463f-a3d9-e040-e00a18064a99&amp;amp;svc_id=info:lanl-repo/svc/getRegion&amp;amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;amp;svc.format=image/jpeg&amp;amp;svc.scale=108,108&amp;amp;svc.region=576,240,1735,1735&amp;amp;svc.rotate=0<span class="tag">&lt;/<span class="title">thumbnail-src-jp2</span>></span>
+  <span class="tag">&lt;<span class="title">large-src</span>></span>http://images.nypl.org/index.php?id=466635&amp;amp;t=w<span class="tag">&lt;/<span class="title">large-src</span>></span>
+  <span class="tag">&lt;<span class="title">large-src-jp2</span>></span>http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;amp;rft_id=urn:uuid:510d47db-463f-a3d9-e040-e00a18064a99&amp;amp;svc_id=info:lanl-repo/svc/getRegion&amp;amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;amp;svc.format=image/jpeg&amp;amp;svc.scale=1800,0&amp;amp;svc.rotate=0<span class="tag">&lt;/<span class="title">large-src-jp2</span>></span>
+  <span class="tag">&lt;<span class="title">first-page-aspect</span>></span>portrait<span class="tag">&lt;/<span class="title">first-page-aspect</span>></span>
+  <span class="tag">&lt;<span class="title">first-page-full-width</span> <span class="attribute">type</span>=<span class="value">"integer"</span>></span>2215<span class="tag">&lt;/<span class="title">first-page-full-width</span>></span>
+  <span class="tag">&lt;<span class="title">first-page-full-height</span> <span class="attribute">type</span>=<span class="value">"integer"</span>></span>2887<span class="tag">&lt;/<span class="title">first-page-full-height</span>></span>
+  <span class="tag">&lt;<span class="title">links</span> <span class="attribute">type</span>=<span class="value">"array"</span>></span>
+    <span class="tag">&lt;<span class="title">link</span>></span>
+      <span class="tag">&lt;<span class="title">href</span>></span>http://menus.nypl.org/api/menus<span class="tag">&lt;/<span class="title">href</span>></span>
+      <span class="tag">&lt;<span class="title">rel</span>></span>index<span class="tag">&lt;/<span class="title">rel</span>></span>
+    <span class="tag">&lt;/<span class="title">link</span>></span>
+    <span class="tag">&lt;<span class="title">link</span>></span>
+      <span class="tag">&lt;<span class="title">href</span>></span>http://menus.nypl.org/api/menus/12848/pages<span class="tag">&lt;/<span class="title">href</span>></span>
+      <span class="tag">&lt;<span class="title">rel</span>></span>pages<span class="tag">&lt;/<span class="title">rel</span>></span>
+    <span class="tag">&lt;/<span class="title">link</span>></span>
+    <span class="tag">&lt;<span class="title">link</span>></span>
+      <span class="tag">&lt;<span class="title">href</span>></span>http://menus.nypl.org/api/menus/12848/dishes<span class="tag">&lt;/<span class="title">href</span>></span>
+      <span class="tag">&lt;<span class="title">rel</span>></span>dishes<span class="tag">&lt;/<span class="title">rel</span>></span>
+    <span class="tag">&lt;/<span class="title">link</span>></span>
+  <span class="tag">&lt;/<span class="title">links</span>></span>
+<span class="tag">&lt;/<span class="title">menu</span>></span></code></pre>
 <h2 id='rate-limiting'>Rate Limiting</h2 id='rate-limiting'>
 <p>We limit requests to <strong>5000 per day</strong> either per token or per IP address and to <strong>2 requests per second</strong>. You can check the returned HTTP headers of any API request to see your current status:
 
 </p>
-<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes/13"</span>
+<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes/13?token=flillduynijyk2u6zemo36mcg4"</span>
 HTTP/<span class="number">1.1</span> <span class="number">200</span> OK 
 Content-Type: application/json
 X-Ratelimit-Limit: <span class="number">5000</span>
@@ -208,7 +263,7 @@ X-Ratelimit-Remaining: <span class="number">4932</span></code></pre>
 <li>if you attempt to access a page beyond the <strong>last</strong> page, you&#39;ll be returned an empty array of objects</li>
 </ul>
 <h4>example curl</h4>
-<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes?page=3"</span></code></pre>
+<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes?page=3&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>example Link Header</h4>
 <pre><code class="bash">&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">1</span>>; rel=<span class="string">"first"</span>, 
 &lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">2</span>>; rel=<span class="string">"prev"</span>, 
