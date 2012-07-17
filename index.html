@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whats-On-The-Menu</title>
+    
+    <link rel="stylesheet" type="text/css" href="http://documentup.com/stylesheets/screen.css">
+    
+    
+
+    
+      <!-- Google Analytics -->
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-33295149-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+    
+  </head>
+  <body><div id="container">
+  <div id="nav">
+    
+      <div id="header">
+        <a href="#" id="logo">Whats-On-The-Menu</a>
+      </div>
+    
+    <ul id="sections">
+      
+        <li>
+          <a href="#what-is-this">What Is This?</a>
+          
+        </li>
+      
+        <li>
+          <a href="#caveats-about-the-data">Caveats About the Data</a>
+          
+        </li>
+      
+        <li>
+          <a href="#tokens">Tokens</a>
+          
+        </li>
+      
+        <li>
+          <a href="#rate-limiting">Rate Limiting</a>
+          
+        </li>
+      
+        <li>
+          <a href="#authentication">Authentication</a>
+          
+        </li>
+      
+        <li>
+          <a href="#pagination">Pagination</a>
+          
+        </li>
+      
+        <li>
+          <a href="#menus">Menus</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#menus/get-menus">GET /menus</a>
+                </li>
+              
+                <li>
+                  <a href="#menus/get-menus-id">GET /menus/{id}</a>
+                </li>
+              
+                <li>
+                  <a href="#menus/get-menus-id-pages">GET /menus/{id}/pages</a>
+                </li>
+              
+                <li>
+                  <a href="#menus/get-menus-id-dishes">GET /menus/{id}/dishes</a>
+                </li>
+              
+                <li>
+                  <a href="#menus/get-menus-search">GET /menus/search</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#dishes">Dishes</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#dishes/get-dishes">GET /dishes</a>
+                </li>
+              
+                <li>
+                  <a href="#dishes/get-dishes-id">GET /dishes/{id}</a>
+                </li>
+              
+                <li>
+                  <a href="#dishes/get-dishes-id-menus">GET /dishes/{id}/menus</a>
+                </li>
+              
+                <li>
+                  <a href="#dishes/get-dishes-search">GET /dishes/search</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+    </ul>
+    
+    
+      <div class="extra twitter">
+        <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=nypl_labs&show_count=false"></iframe>
+      </div>
+    
+  </div>
+  <div id="content">
+    
+    <h1>Menus Beta API v1</h1>
+<h2 id='what-is-this'>What Is This?</h2 id='what-is-this'>
+<p>There&#39;s a lot of data behind The New York Public Library&#39;s <a href="http://menus.nypl.org">What&#39;s On The Menu?</a>, and here&#39;s your chance to explore it. This is built for programmers and power-users, so if you&#39;re looking for an easier way to explore the dataset you may want to take a look at our <a href="http://menus.nypl.org/data">Biweekly data exports</a>. However if you&#39;re looking to do powerful analysis of historical menu data, this is the tool for you.
+
+</p>
+<p>If you haven&#39;t worked with an API before, this <a href="http://www.restapitutorial.com/">REST API tutorial</a> is a great place to start. 
+
+</p>
+<p>To <em>pretty print</em> your responses, take a look at the <a href="https://github.com/misterfifths/jutil">jutil</a> repository or pipe (|) in <em>python -mjson.tool</em>:
+
+</p>
+<pre><code class="bash"><span class="keyword">echo</span> '{<span class="string">"json"</span>:<span class="string">"obj"</span>}' | python -mjson.tool</code></pre>
+<p>This is our first public API, so if you have any questions, please <a href="mailto:menus@nypl.org">get in touch</a> with us; it&#39;ll help us as much as you. 
+
+</p>
+<h2 id='caveats-about-the-data'>Caveats About the Data</h2 id='caveats-about-the-data'>
+<p>There&#39;s a few things you should know about the data before you dive in.
+
+</p>
+<ul>
+<li><p>You may notice empty/null fields for certain items. Much of the information for <strong>dishes</strong> and <strong>menus</strong>, to some extent, are still being normalized, cleaned, and updated.</p>
+</li>
+<li><p>Currently, <em>highest</em> and <em>lowest</em> prices for <strong>dishes</strong> don&#39;t take into account currencies other than the dollar.</p>
+</li>
+<li><p>This data structure is still being worked on and changes will be taking shape with both the Menus <a href="http://menus.nypl.org">application</a> and the API. We will update this documentation and the <a href="http://menus.nypl.org/data">Menus data page</a> before these changes and/or new versions go into effect.</p>
+</li>
+<li><p>If you&#39;re interested in cleaning up the data--by hand, with Google Refine, programmatically--<a href="mailto:menus@nypl.org">please send an email</a> with the subject heading <strong>I want to help NYPL better their dataset</strong>. </p>
+</li>
+</ul>
+<h2 id='tokens'>Tokens</h2 id='tokens'>
+<p>For this initial, beta release, please email <a href="mailto:menus@nypl.org">menusATnyplDOT.org</a> with the subject heading <strong>API ACCESS</strong> in order to get a token to use the service. Your token will be a 26-character string, something like <em>flillduynijyk2u6zemo36mcg4</em>. In the email, please also give us a little background about yourself and what you plan to use the service for.
+
+</p>
+<p>Eventually, there will be a sign-up site for obtaining tokens and getting updates on the service.
+
+
+</p>
+<h2 id='rate-limiting'>Rate Limiting</h2 id='rate-limiting'>
+<p>We limit requests to <strong>5000 per day</strong> either per token or per IP address and to <strong>2 requests per second</strong>. You can check the returned HTTP headers of any API request to see your current status:
+
+</p>
+<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes/13"</span>
+HTTP/<span class="number">1.1</span> <span class="number">200</span> OK 
+Content-Type: application/json
+X-Ratelimit-Limit: <span class="number">5000</span>
+X-Ratelimit-Remaining: <span class="number">4932</span></code></pre>
+<h2 id='authentication'>Authentication</h2 id='authentication'>
+<h4>Basic Auth</h4>
+<p><em>Details forthcoming</em>
+
+</p>
+<h4>Oauth 2</h4>
+<p><em>Details forthcoming</em>
+
+</p>
+<h2 id='pagination'>Pagination</h2 id='pagination'>
+<p>Pagination Info is Contained in the Link <strong>Header</strong> for Indexes
+
+</p>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>rel</em> can refer to <strong>first</strong>, <strong>prev</strong>, <strong>next</strong>, and <strong>last</strong> pages</li>
+<li><em>per_page</em> limit for all Menu objects is <strong>50</strong>; you can always get less</li>
+<li><em>per_page</em> limit for all Dish objects is <strong>100</strong>; you can always get less</li>
+<li>if you attempt to access a page beyond the <strong>last</strong> page, you&#39;ll be returned an empty array of objects</li>
+</ul>
+<h4>example curl</h4>
+<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes?page=3"</span></code></pre>
+<h4>example Link Header</h4>
+<pre><code class="bash">&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">1</span>>; rel=<span class="string">"first"</span>, 
+&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">2</span>>; rel=<span class="string">"prev"</span>, 
+&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">4</span>>; rel=<span class="string">"next"</span>, 
+&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">3219</span>>; rel=<span class="string">"last"</span></code></pre>
+<h2 id='menus'>Menus</h2 id='menus'>
+<h3 id='menus/get-menus'>GET /menus</h3 id='menus/get-menus'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>possible query parameters</h4>
+<pre><code class="javascript">min_year: <span class="string">"?min_year=1947"</span>
+max_year: <span class="string">"?max_year=1950"</span> 
+sort_by: <span class="string">"?sort_by=date"</span> || <span class="string">"?sort_by=name"</span> || <span class="string">"?sort_by=dish_count"</span>
+status: <span class="string">"?status=under_review"</span> || <span class="string">"?status=complete"</span> || <span class="string">"?status=to_transcribe"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>stats</em> refers to top-level counts/info on the object</li>
+<li><em>min_year</em> and <em>max_year</em> act as a date range for menus</li>
+<li><em>min_year</em> is included in the range, <em>max_year</em> is not</li>
+<li><em>sort_by</em> defaults to <strong>date</strong>; <em>?sort_by=date</em> returns objects from <strong>most recent to oldest</strong></li>
+<li><em>status</em> takes on different terms than those on <a href="http://menus.nypl.org">menus.nypl.org</a> due to how they&#39;re actually best designated in the data structure</li>
+<li><em>status</em> <strong>to_transcribe</strong> is a sum of menus that are in the state of <strong>new</strong> and <strong>in progress</strong></li>
+<li><em>first_page_full_height</em> and <em>first_page_full_width</em> are in pixels</li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{
+    <span class="string">"stats"</span>: {
+        <span class="string">"count"</span>: <span class="number">14450</span>,
+        <span class="string">"earliest_menu"</span>: <span class="number">1851</span>,
+        <span class="string">"latest_menu"</span>: <span class="number">2012</span>,
+        <span class="string">"to_transcribe"</span>: <span class="number">38</span>,
+        <span class="string">"under_review"</span>: <span class="number">6418</span>,
+        <span class="string">"complete"</span>: <span class="number">7994</span>
+    },
+    <span class="string">"menus"</span>: [
+        {
+            <span class="string">"id"</span>: <span class="number">27228</span>,
+            <span class="string">"name"</span>: <span class="keyword">null</span>,
+            <span class="string">"sponsor"</span>: <span class="string">"Hotel Del Monte"</span>,
+            <span class="string">"venue"</span>: <span class="string">"HOTEL"</span>,
+            <span class="string">"event"</span>: <span class="string">"dinner"</span>,
+            <span class="string">"place"</span>: <span class="string">"Hotel Del Monte"</span>,
+            <span class="string">"occasion"</span>: <span class="string">"PATRIOTIC HOLIDAY"</span>,
+            <span class="string">"physical_description"</span>: <span class="string">"9 1/2 x 6 in. ; col. ill."</span>,
+            <span class="string">"notes"</span>: <span class="string">""</span>,
+            <span class="string">"call_number"</span>: <span class="string">"Soete 50"</span>,
+            <span class="string">"keywords"</span>: <span class="keyword">null</span>,
+            <span class="string">"language"</span>: <span class="keyword">null</span>,
+            <span class="string">"date"</span>: <span class="string">"2012-07-04"</span>,
+            <span class="string">"status"</span>: <span class="string">"complete"</span>,
+            <span class="string">"currency"</span>: <span class="keyword">null</span>,
+            <span class="string">"currency_symbol"</span>: <span class="keyword">null</span>,
+            <span class="string">"location"</span>: <span class="string">"Hotel Del Monte"</span>,
+            <span class="string">"location_type"</span>: <span class="keyword">null</span>,
+            <span class="string">"page_count"</span>: <span class="number">5</span>,
+            <span class="string">"dish_count"</span>: <span class="number">51</span>,
+            <span class="string">"thumbnail_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=3884434&amp;t=r"</span>,
+            <span class="string">"thumbnail_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:a7df725e-b834-322f-e040-e00a18063d14&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=108,108&amp;svc.region=1249,240,2479,2479&amp;svc.rotate=0"</span>,
+            <span class="string">"large_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=3884434&amp;t=w"</span>,
+            <span class="string">"large_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:a7df725e-b834-322f-e040-e00a18063d14&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=1800,0&amp;svc.rotate=0"</span>,
+            <span class="string">"first_page_aspect"</span>: <span class="string">"portrait"</span>,
+            <span class="string">"first_page_full_width"</span>: <span class="number">2959</span>,
+            <span class="string">"first_page_full_height"</span>: <span class="number">4978</span>,
+            <span class="string">"links"</span>: [
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/27228"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"self"</span>
+                },
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/27228/pages"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"pages"</span>
+                },
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/27228/dishes"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"dishes"</span>
+                }
+            ]
+        },
+        {
+            …
+        }
+    ]
+}</code></pre>
+<h3 id='menus/get-menus-id'>GET /menus/{id}</h3 id='menus/get-menus-id'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>first_page_full_height</em> and <em>first_page_full_width</em> are in pixels</li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{
+    <span class="string">"id"</span>: <span class="number">31729</span>,
+    <span class="string">"name"</span>: <span class="keyword">null</span>,
+    <span class="string">"sponsor"</span>: <span class="string">"Le Versailles"</span>,
+    <span class="string">"venue"</span>: <span class="keyword">null</span>,
+    <span class="string">"event"</span>: <span class="keyword">null</span>,
+    <span class="string">"place"</span>: <span class="keyword">null</span>,
+    <span class="string">"occasion"</span>: <span class="keyword">null</span>,
+    <span class="string">"physical_description"</span>: <span class="string">"35.5x29.5cm"</span>,
+    <span class="string">"notes"</span>: <span class="string">"  "</span>,
+    <span class="string">"call_number"</span>: <span class="string">"1920-0071_wotm"</span>,
+    <span class="string">"keywords"</span>: <span class="keyword">null</span>,
+    <span class="string">"language"</span>: <span class="keyword">null</span>,
+    <span class="string">"date"</span>: <span class="string">"1920-06-14"</span>,
+    <span class="string">"status"</span>: <span class="string">"under review"</span>,
+    <span class="string">"currency"</span>: <span class="string">"Francs"</span>,
+    <span class="string">"currency_symbol"</span>: <span class="string">"FF"</span>,
+    <span class="string">"location"</span>: <span class="string">"Le Versailles"</span>,
+    <span class="string">"location_type"</span>: <span class="keyword">null</span>,
+    <span class="string">"page_count"</span>: <span class="number">2</span>,
+    <span class="string">"dish_count"</span>: <span class="number">168</span>,
+    <span class="string">"thumbnail_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=4029915&amp;t=r"</span>,
+    <span class="string">"thumbnail_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:bf8b24be-cb02-4876-e040-e00a1806540b&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=108,108&amp;svc.region=627,240,3431,3431&amp;svc.rotate=0"</span>,
+    <span class="string">"large_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=4029915&amp;t=w"</span>,
+    <span class="string">"large_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:bf8b24be-cb02-4876-e040-e00a1806540b&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=1800,0&amp;svc.rotate=0"</span>,
+    <span class="string">"first_page_aspect"</span>: <span class="string">"portrait"</span>,
+    <span class="string">"first_page_full_width"</span>: <span class="number">3911</span>,
+    <span class="string">"first_page_full_height"</span>: <span class="number">4686</span>,
+    <span class="string">"links"</span>: [
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus"</span>,
+            <span class="string">"rel"</span>: <span class="string">"index"</span>
+        },
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/31729/pages"</span>,
+            <span class="string">"rel"</span>: <span class="string">"pages"</span>
+        },
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/31729/dishes"</span>,
+            <span class="string">"rel"</span>: <span class="string">"dishes"</span>
+        }
+    ]
+}</code></pre>
+<h3 id='menus/get-menus-id-pages'>GET /menus/{id}/pages</h3 id='menus/get-menus-id-pages'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729/pages?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>full_height</em> and <em>full_width</em> are in pixels</li>
+<li><em>uuid</em> is attributed to NYPL Image Repository</li>
+<li><em>price</em> and <em>high_price</em> are strings of <strong>float</strong> values if they exist. Price normalization is a future step for the project. The price type can be determined from the <em>currency</em> of the Menu object</li>
+<li><em>created_at</em> and <em>updated_at</em> refer to when that specific transcription occurred in UTC</li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{
+    <span class="string">"links"</span>: [
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/31729"</span>,
+            <span class="string">"rel"</span>: <span class="string">"parent"</span>
+        },
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus"</span>,
+            <span class="string">"rel"</span>: <span class="string">"index"</span>
+        }
+    ],
+    <span class="string">"pages"</span>: [
+        {
+            <span class="string">"id"</span>: <span class="number">64836</span>,
+            <span class="string">"page_number"</span>: <span class="number">1</span>,
+            <span class="string">"image_id"</span>: <span class="string">"4029915"</span>,
+            <span class="string">"full_height"</span>: <span class="number">4686</span>,
+            <span class="string">"full_width"</span>: <span class="number">3911</span>,
+            <span class="string">"uuid"</span>: <span class="string">"bf8b24be-cb02-4876-e040-e00a1806540b"</span>,
+            <span class="string">"aspect"</span>: <span class="string">"portrait"</span>,
+            <span class="string">"small_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=4029915&amp;t=t"</span>,
+            <span class="string">"thumbnail_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=4029915&amp;t=r"</span>,
+            <span class="string">"thumbnail_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:bf8b24be-cb02-4876-e040-e00a1806540b&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=108,108&amp;svc.region=627,240,3431,3431&amp;svc.rotate=0"</span>,
+            <span class="string">"large_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=4029915&amp;t=w"</span>,
+            <span class="string">"large_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:bf8b24be-cb02-4876-e040-e00a1806540b&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=1800,0&amp;svc.rotate=0"</span>,
+            <span class="string">"dishes"</span>: [
+                {
+                    <span class="string">"name"</span>: <span class="string">"Eaux minerales la bout"</span>,
+                    <span class="string">"price"</span>: <span class="string">"5.00"</span>,
+                    <span class="string">"high_price"</span>: <span class="keyword">null</span>,
+                    <span class="string">"xpos"</span>: <span class="number">0.642667</span>,
+                    <span class="string">"ypos"</span>: <span class="number">0.0990408</span>,
+                    <span class="string">"created_at"</span>: <span class="string">"2012-07-03T02:51:59Z"</span>,
+                    <span class="string">"updated_at"</span>: <span class="string">"2012-07-03T20:28:37Z"</span>,
+                    <span class="string">"links"</span>: [
+                        {
+                            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/375814"</span>,
+                            <span class="string">"rel"</span>: <span class="string">"self"</span>
+                        }
+                    ]
+                },
+                {
+                       …
+                }
+            ]
+        },
+        {
+            …
+        }
+    ]
+}</code></pre>
+<h3 id='menus/get-menus-id-dishes'>GET /menus/{id}/dishes</h3 id='menus/get-menus-id-dishes'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729/dishes?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>price</em> and <em>high_price</em> are strings of <strong>float</strong> values if they exist. Price normalization is a future step for the project. The price type can be determined from the <em>currency</em> of the Menu object</li>
+<li><em>created_at</em> and <em>updated_at</em> refer to when that specific transcription occurred in UTC</li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{    
+    <span class="string">"links"</span>: [
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/31729"</span>, 
+            <span class="string">"rel"</span>: <span class="string">"parent"</span>
+        }, 
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus"</span>, 
+            <span class="string">"rel"</span>: <span class="string">"index"</span>
+        }
+    ],
+    <span class="string">"dishes"</span>: [
+        {
+            <span class="string">"name"</span>: <span class="string">"Couvert"</span>,
+            <span class="string">"price"</span>: <span class="keyword">null</span>,
+            <span class="string">"high_price"</span>: <span class="keyword">null</span>,
+            <span class="string">"xpos"</span>: <span class="number">0.542667</span>,
+            <span class="string">"ypos"</span>: <span class="number">0.0356102</span>,
+            <span class="string">"created_at"</span>: <span class="string">"2012-07-03T02:51:59Z"</span>,
+              <span class="string">"updated_at"</span>: <span class="string">"2012-07-03T20:28:37Z"</span>,
+            <span class="string">"links"</span>: [
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/139476"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"self"</span>
+                }
+            ]
+        },
+         {
+             …
+         }
+    ]
+}</code></pre>
+<h3 id='menus/get-menus-search'>GET /menus/search</h3 id='menus/get-menus-search'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/search?query=dinner&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span>
+query: <span class="string">"?query="</span></code></pre>
+<h4>possible query parameters</h4>
+<pre><code class="javascript">sort_by: <span class="string">"?sort_by=date"</span> || <span class="string">"?sort_by=name"</span> || <span class="string">"?sort_by=relevance"</span> || <span class="string">"?sort_by=dish_count"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>stats - count</em> refers to the number of results in the search</li>
+<li><em>first_page_full_height</em> and <em>first_page_full_width</em> are in pixels</li>
+<li><em>sort_by</em> defaults to <strong>relevance</strong></li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{
+    <span class="string">"stats"</span>: {
+        <span class="string">"count"</span>: <span class="number">4322</span>
+    },
+    <span class="string">"menus"</span>: [
+        {
+            <span class="string">"id"</span>: <span class="number">29387</span>,
+            <span class="string">"name"</span>: <span class="string">""</span>,
+            <span class="string">"sponsor"</span>: <span class="string">"Dinner"</span>,
+            <span class="string">"venue"</span>: <span class="keyword">null</span>,
+            <span class="string">"event"</span>: <span class="string">"Dinner"</span>,
+            <span class="string">"place"</span>: <span class="keyword">null</span>,
+            <span class="string">"occasion"</span>: <span class="keyword">null</span>,
+            <span class="string">"physical_description"</span>: <span class="string">"29.5x24cm folded; 29.5x47cm open"</span>,
+            <span class="string">"notes"</span>: <span class="string">""</span>,
+            <span class="string">"call_number"</span>: <span class="string">"1998-0009_wotm"</span>,
+            <span class="string">"keywords"</span>: <span class="keyword">null</span>,
+            <span class="string">"language"</span>: <span class="keyword">null</span>,
+            <span class="string">"date"</span>: <span class="string">"1998-01-01"</span>,
+            <span class="string">"status"</span>: <span class="string">"under review"</span>,
+            <span class="string">"location"</span>: <span class="string">"Dinner"</span>,
+            <span class="string">"location_type"</span>: <span class="keyword">null</span>,
+            <span class="string">"currency"</span>: <span class="string">"Dollars"</span>,
+            <span class="string">"currency_symbol"</span>: <span class="string">"$"</span>,
+            <span class="string">"page_count"</span>: <span class="number">4</span>,
+            <span class="string">"dish_count"</span>: <span class="number">102</span>,
+            <span class="string">"thumbnail_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=3953786&amp;t=r"</span>,
+            <span class="string">"thumbnail_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:ae6c1dd9-59b7-f55a-e040-e00a18062565&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=108,108&amp;svc.region=733,240,3720,3720&amp;svc.rotate=0"</span>,
+            <span class="string">"large_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=3953786&amp;t=w"</span>,
+            <span class="string">"large_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:ae6c1dd9-59b7-f55a-e040-e00a18062565&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=1800,0&amp;svc.rotate=0"</span>,
+            <span class="string">"first_page_aspect"</span>: <span class="string">"portrait"</span>,
+            <span class="string">"first_page_full_width"</span>: <span class="number">4200</span>,
+            <span class="string">"first_page_full_height"</span>: <span class="number">5186</span>,
+            <span class="string">"links"</span>: [
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/29387"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"self"</span>
+                },
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/29387/pages"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"pages"</span>
+                },
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/29387/dishes"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"dishes"</span>
+                }
+            ]
+        },
+        {
+            …
+        }
+    ]
+}</code></pre>
+<h2 id='dishes'>Dishes</h2 id='dishes'>
+<h3 id='dishes/get-dishes'>GET /dishes</h3 id='dishes/get-dishes'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>possible query parameters</h4>
+<pre><code class="javascript">min_year: <span class="string">"?min_year=1947"</span>
+max_year: <span class="string">"?max_year=1950"</span> 
+sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?sort_by=date"</span> || <span class="string">"?sort_by=popularity"</span> || <span class="string">"?sort_by=obscurity"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>stats</em> refers to top-level counts/info on the object</li>
+<li><em>min_year</em> and <em>max_year</em> act as a date range for menus</li>
+<li><em>sort_by</em> defaults to <strong>date</strong>; <em>?sort_by=date</em> returns objects from <strong>most recent to oldest</strong></li>
+<li><em>lowest_price</em> and <em>highest_price</em> are strings of <strong>decimal</strong> values if they exist and if they related to the dollar currency. Price normalization and multi-currency-comparison are future steps for the project. Non-dollar based dishes will be null. Honestly, the field is not very useful, as of yet.</li>
+<li>if <em>first_appeared</em> or <em>last_appeared</em> return <strong>null</strong>, then there is no year attached, either due to the associated menu not containing a date/year or that the dish item has not been updated yet. This is another aspect we&#39;re working on.</li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{
+    <span class="string">"stats"</span>: {
+        <span class="string">"count"</span>: <span class="number">323958</span>
+    },
+    <span class="string">"dishes"</span>: [
+        {
+            <span class="string">"id"</span>: <span class="number">351645</span>,
+            <span class="string">"name"</span>: <span class="string">"Apple cake with hazelnuts and ricotta cheese"</span>,
+            <span class="string">"description"</span>: <span class="keyword">null</span>,
+            <span class="string">"menus_appeared"</span>: <span class="number">1</span>,
+            <span class="string">"times_appeared"</span>: <span class="number">1</span>,
+            <span class="string">"first_appeared"</span>: <span class="number">2012</span>,
+            <span class="string">"last_appeared"</span>: <span class="number">2012</span>,
+            <span class="string">"lowest_price"</span>: <span class="keyword">null</span>,
+            <span class="string">"highest_price"</span>: <span class="keyword">null</span>,
+            <span class="string">"links"</span>: [
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/351645"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"self"</span>
+                },
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/351645/menus"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"menus"</span>
+                }
+            ]
+        },
+        {
+            …
+        }
+    ]
+}</code></pre>
+<h3 id='dishes/get-dishes-id'>GET /dishes/{id}</h3 id='dishes/get-dishes-id'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/329313?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>lowest_price</em> and <em>highest_price</em> are strings of <strong>decimal</strong> values if they exist and if they related to the dollar currency. Price normalization and multi-currency-comparison are future steps for the project. Non-dollar based dishes will be null. Honestly, the field is not very useful, as of yet</li>
+<li>if <em>first_appeared</em> or <em>last_appeared</em> return <strong>null</strong>, then there is no year attached, either due to the associated menu not containing a date/year or that the dish item has not been updated yet. This is another aspect we&#39;re working on.</li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{
+    <span class="string">"id"</span>: <span class="number">329313</span>,
+    <span class="string">"name"</span>: <span class="string">"AA Milk (bottle)"</span>,
+    <span class="string">"description"</span>: null,
+    <span class="string">"menus_appeared"</span>: <span class="number">1</span>,
+    <span class="string">"times_appeared"</span>: <span class="number">1</span>,
+    <span class="string">"first_appeared"</span>: <span class="number">1940</span>,
+    <span class="string">"last_appeared"</span>: <span class="number">1940</span>,
+    <span class="string">"lowest_price"</span>: <span class="string">"<span class="variable">$0</span>.10"</span>,
+    <span class="string">"highest_price"</span>: <span class="string">"<span class="variable">$0</span>.10"</span>,
+    <span class="string">"links"</span>: [
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes"</span>,
+            <span class="string">"rel"</span>: <span class="string">"index"</span>
+        },
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/329313/menus"</span>,
+            <span class="string">"rel"</span>: <span class="string">"menus"</span>
+        }
+    ]
+}</code></pre>
+<h3 id='dishes/get-dishes-id-menus'>GET /dishes/{id}/menus</h3 id='dishes/get-dishes-id-menus'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/195/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>first_page_full_height</em> and <em>first_page_full_width</em> are in pixels</li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{
+    <span class="string">"links"</span>: [
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/195"</span>,
+            <span class="string">"rel"</span>: <span class="string">"parent"</span>
+        },
+        {
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes"</span>,
+            <span class="string">"rel"</span>: <span class="string">"index"</span>
+        }
+    ],
+    <span class="string">"menus"</span>: [
+        {
+            <span class="string">"id"</span>: <span class="number">16674</span>,
+            <span class="string">"name"</span>: <span class="string">""</span>,
+            <span class="string">"sponsor"</span>: <span class="string">"NIPPON YUSEN KAISHA"</span>,
+            <span class="string">"venue"</span>: <span class="string">"COMMERCIAL"</span>,
+            <span class="string">"event"</span>: <span class="string">"BREAKFAST"</span>,
+            <span class="string">"place"</span>: <span class="string">"ABOARD SS KAMAKURA MARU"</span>,
+            <span class="string">"occasion"</span>: <span class="string">""</span>,
+            <span class="string">"physical_description"</span>: <span class="string">"BROADSIDE; 5.5X7.75;"</span>,
+            <span class="string">"notes"</span>: <span class="string">"FIRST CLASS BILL OF FARE; HAND WRITTEN;"</span>,
+            <span class="string">"call_number"</span>: <span class="string">"1900-4088"</span>,
+            <span class="string">"keywords"</span>: <span class="keyword">null</span>,
+            <span class="string">"language"</span>: <span class="keyword">null</span>,
+            <span class="string">"date"</span>: <span class="string">"1900-08-19"</span>,
+            <span class="string">"status"</span>: <span class="string">"complete"</span>,
+            <span class="string">"currency"</span>: <span class="keyword">null</span>,
+            <span class="string">"currency_symbol"</span>: <span class="keyword">null</span>,
+            <span class="string">"location"</span>: <span class="string">"Nippon Yusen Kaisha"</span>,
+            <span class="string">"location_type"</span>: <span class="keyword">null</span>,
+            <span class="string">"page_count"</span>: <span class="number">2</span>,
+            <span class="string">"dish_count"</span>: <span class="number">13</span>,
+            <span class="string">"thumbnail_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=468654&amp;t=r"</span>,
+            <span class="string">"thumbnail_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:510d47db-515d-a3d9-e040-e00a18064a99&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=108,108&amp;svc.region=696,240,1841,1841&amp;svc.rotate=0"</span>,
+            <span class="string">"large_src"</span>: <span class="string">"http://images.nypl.org/index.php?id=468654&amp;t=w"</span>,
+            <span class="string">"large_src_jp2"</span>: <span class="string">"http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:510d47db-515d-a3d9-e040-e00a18064a99&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=1800,0&amp;svc.rotate=0"</span>,
+            <span class="string">"first_page_aspect"</span>: <span class="string">"portrait"</span>,
+            <span class="string">"first_page_full_width"</span>: <span class="number">2321</span>,
+            <span class="string">"first_page_full_height"</span>: <span class="number">3233</span>,
+            <span class="string">"links"</span>: [
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/16674"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"self"</span>
+                }
+            ]
+        },
+        {
+            …
+        }
+    ] 
+}</code></pre>
+<h3 id='dishes/get-dishes-search'>GET /dishes/search</h3 id='dishes/get-dishes-search'>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/search?query=knish&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<h4>required query parameters</h4>
+<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span>
+query: <span class="string">"?query="</span></code></pre>
+<h4>possible query parameters</h4>
+<pre><code class="javascript">sort_by: <span class="string">"?sort_by=date"</span> || <span class="string">"?sort_by=name"</span> || <span class="string">"?sort_by=relevance"</span> || <span class="string">"?sort_by=popularity"</span> || <span class="string">"?sort_by=obscurity"</span></code></pre>
+<p><strong>Notes</strong>
+
+</p>
+<ul>
+<li><em>stats - count</em> refers to the number of results in the search</li>
+<li><em>lowest_price</em> and <em>highest_price</em> are strings of <strong>decimal</strong> values if they exist and if they related to the dollar currency. Price normalization and multi-currency-comparison are future steps for the project. Non-dollar based dishes will be null. Honestly, the field is not very useful, as of yet</li>
+<li>if <em>first_appeared</em> or <em>last_appeared</em> return <strong>null</strong>, then there is no year attached, either due to the associated menu not containing a date/year or that the dish item has not been updated yet. This is another aspect we&#39;re working on.</li>
+</ul>
+<h4>example response</h4>
+<pre><code class="json">{
+    <span class="string">"stats"</span>: {
+        <span class="string">"count"</span>: <span class="number">8</span>
+    },
+    <span class="string">"dishes"</span>: [
+        {
+            <span class="string">"id"</span>: <span class="number">153405</span>,
+            <span class="string">"name"</span>: <span class="string">"Hot Deli-Variety Plate (serves two) kishke, knish, cabbage roll, kreplach"</span>,
+            <span class="string">"description"</span>: <span class="keyword">null</span>,
+            <span class="string">"menus_appeared"</span>: <span class="number">1</span>,
+            <span class="string">"times_appeared"</span>: <span class="number">1</span>,
+            <span class="string">"first_appeared"</span>: <span class="keyword">null</span>,
+            <span class="string">"last_appeared"</span>: <span class="keyword">null</span>,
+            <span class="string">"lowest_price"</span>: <span class="keyword">null</span>,
+            <span class="string">"highest_price"</span>: <span class="keyword">null</span>,
+            <span class="string">"links"</span>: [
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/153405"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"self"</span>
+                },
+                {
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/153405/menus"</span>,
+                    <span class="string">"rel"</span>: <span class="string">"menus"</span>
+                }
+            ]
+        },
+        {
+            …
+        }
+    ]
+}</code></pre>
+
+  </div>
+</div></body>
+</html>
