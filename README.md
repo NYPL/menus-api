@@ -14,11 +14,13 @@ echo '{"json":"obj"}' | python -mjson.tool
 This is our first public API, so if you have any questions, please [get in touch](mailto:menus@nypl.org) with us; it'll help us as much as you. 
 
 ##Caveats About the Data
-There's a few things you should know about the data before you dive in.
+There's a few things you should know about the data before you dive in:
 
-* You may notice empty/null fields for certain items. Much of the information for **dishes** and **menus**, to some extent, are still being normalized, cleaned, and updated.
+*	You may notice empty/null fields for certain items. 
+	Much of the information for **dishes** and **menus**, to some extent, are still being normalized, cleaned, and updated.
 
-* Currently, *highest* and *lowest* prices for **dishes** don't take into account currencies other than the dollar.
+* 	Currently, *highest* and *lowest* prices for **dishes** don't take into account 
+	currencies other than the dollar.
 
 * This data structure is still being worked on and changes will be taking shape with both the Menus [application](http://menus.nypl.org) and the API. We will update this documentation and the [Menus data page](http://menus.nypl.org/data) before these changes and/or new versions go into effect.
 
