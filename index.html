@@ -261,6 +261,9 @@ X-Ratelimit-Remaining: <span class="number">4932</span></code></pre>
 &lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">2</span>>; rel=<span class="string">"prev"</span>, 
 &lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">4</span>>; rel=<span class="string">"next"</span>, 
 &lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">3219</span>>; rel=<span class="string">"last"</span></code></pre>
+<p>For examples on how to parse the <strong>link header</strong>, <a href="https://gist.github.com/2946021">this gist</a> showcases a javascript method (<strong>parseLinkHeader</strong>) and <a href="https://github.com/eclipse/egit-github/blob/master/org.eclipse.egit.github.core/src/org/eclipse/egit/github/core/client/PageLinks.java#L43-75">this file</a> is a java version, written to be used with the Github API, which is where this pagination concept comes from.
+
+</p>
 <h2 id='menus'>Menus</h2 id='menus'>
 <h3 id='menus/get-menus'>GET /menus</h3 id='menus/get-menus'>
 <pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>

@@ -136,6 +136,8 @@ curl -i "http://api.menus.nypl.org/dishes?page=3&token=flillduynijyk2u6zemo36mcg
 <http://api.menus.nypl.org/dishes?sort_by=date&per_page=100&page=3219>; rel="last"
 ```
 
+For examples on how to parse the **link header**, [this gist](https://gist.github.com/2946021) showcases a javascript method (**parseLinkHeader**) and [this file](https://github.com/eclipse/egit-github/blob/master/org.eclipse.egit.github.core/src/org/eclipse/egit/github/core/client/PageLinks.java#L43-75) is a java version, written to be used with the Github API, which is where this pagination concept comes from.
+
 ##Menus
 
 ###GET /menus
