@@ -177,7 +177,7 @@
 
 </p>
 <h4>example curl</h4>
-<pre><code class="bash">curl <span class="string">"http://menus.nypl.org/api/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">curl <span class="string">"http://api.menus.nypl.org/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>example xml response</h4>
 <pre><code class="xml"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="tag">&lt;<span class="title">menu</span>></span>
@@ -210,15 +210,15 @@
   <span class="tag">&lt;<span class="title">first-page-full-height</span> <span class="attribute">type</span>=<span class="value">"integer"</span>></span>2887<span class="tag">&lt;/<span class="title">first-page-full-height</span>></span>
   <span class="tag">&lt;<span class="title">links</span> <span class="attribute">type</span>=<span class="value">"array"</span>></span>
     <span class="tag">&lt;<span class="title">link</span>></span>
-      <span class="tag">&lt;<span class="title">href</span>></span>http://menus.nypl.org/api/menus<span class="tag">&lt;/<span class="title">href</span>></span>
+      <span class="tag">&lt;<span class="title">href</span>></span>http://api.menus.nypl.org/menus<span class="tag">&lt;/<span class="title">href</span>></span>
       <span class="tag">&lt;<span class="title">rel</span>></span>index<span class="tag">&lt;/<span class="title">rel</span>></span>
     <span class="tag">&lt;/<span class="title">link</span>></span>
     <span class="tag">&lt;<span class="title">link</span>></span>
-      <span class="tag">&lt;<span class="title">href</span>></span>http://menus.nypl.org/api/menus/12848/pages<span class="tag">&lt;/<span class="title">href</span>></span>
+      <span class="tag">&lt;<span class="title">href</span>></span>http://api.menus.nypl.org/menus/12848/pages<span class="tag">&lt;/<span class="title">href</span>></span>
       <span class="tag">&lt;<span class="title">rel</span>></span>pages<span class="tag">&lt;/<span class="title">rel</span>></span>
     <span class="tag">&lt;/<span class="title">link</span>></span>
     <span class="tag">&lt;<span class="title">link</span>></span>
-      <span class="tag">&lt;<span class="title">href</span>></span>http://menus.nypl.org/api/menus/12848/dishes<span class="tag">&lt;/<span class="title">href</span>></span>
+      <span class="tag">&lt;<span class="title">href</span>></span>http://api.menus.nypl.org/menus/12848/dishes<span class="tag">&lt;/<span class="title">href</span>></span>
       <span class="tag">&lt;<span class="title">rel</span>></span>dishes<span class="tag">&lt;/<span class="title">rel</span>></span>
     <span class="tag">&lt;/<span class="title">link</span>></span>
   <span class="tag">&lt;/<span class="title">links</span>></span>
@@ -227,7 +227,7 @@
 <p>We limit requests to <strong>5000 per day</strong> either per token or per IP address and to <strong>2 requests per second</strong>. You can check the returned HTTP headers of any API request to see your current status:
 
 </p>
-<pre><code class="bash">curl -i <span class="string">"http://menus.nypl.org/api/dishes/13?token=flillduynijyk2u6zemo36mcg4"</span>
+<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes/13?token=flillduynijyk2u6zemo36mcg4"</span>
 HTTP/<span class="number">1.1</span> <span class="number">200</span> OK 
 Content-Type: application/json
 X-Ratelimit-Limit: <span class="number">5000</span>
@@ -255,18 +255,18 @@ X-Ratelimit-Remaining: <span class="number">4932</span></code></pre>
 <li>if you attempt to access a page beyond the <strong>last</strong> page, you&#39;ll be returned an empty array of objects</li>
 </ul>
 <h4>example curl</h4>
-<pre><code class="bash">curl -i <span class="string">"http://menus.nypl.org/api/dishes?page=3&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes?page=3&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>example Link Header</h4>
-<pre><code class="bash">&lt;http://menus.nypl.org/api/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">1</span>>; rel=<span class="string">"first"</span>, 
-&lt;http://menus.nypl.org/api/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">2</span>>; rel=<span class="string">"prev"</span>, 
-&lt;http://menus.nypl.org/api/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">4</span>>; rel=<span class="string">"next"</span>, 
-&lt;http://menus.nypl.org/api/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">3219</span>>; rel=<span class="string">"last"</span></code></pre>
+<pre><code class="bash">&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">1</span>>; rel=<span class="string">"first"</span>, 
+&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">2</span>>; rel=<span class="string">"prev"</span>, 
+&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">4</span>>; rel=<span class="string">"next"</span>, 
+&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">3219</span>>; rel=<span class="string">"last"</span></code></pre>
 <p>For examples on how to parse the <strong>link header</strong>, <a href="https://gist.github.com/2946021">this gist</a> showcases a javascript method (<strong>parseLinkHeader</strong>) and <a href="https://github.com/eclipse/egit-github/blob/master/org.eclipse.egit.github.core/src/org/eclipse/egit/github/core/client/PageLinks.java#L43-75">this file</a> is a java version, written to be used with the Github API, which is where this pagination concept comes from.
 
 </p>
 <h2 id='menus'>Menus</h2 id='menus'>
 <h3 id='menus/get-menus'>GET /menus</h3 id='menus/get-menus'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>possible query parameters</h4>
@@ -327,15 +327,15 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
             <span class="string">"first_page_full_height"</span>: <span class="number">4978</span>,
             <span class="string">"links"</span>: [
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/27228"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/27228"</span>,
                     <span class="string">"rel"</span>: <span class="string">"self"</span>
                 },
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/27228/pages"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/27228/pages"</span>,
                     <span class="string">"rel"</span>: <span class="string">"pages"</span>
                 },
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/27228/dishes"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/27228/dishes"</span>,
                     <span class="string">"rel"</span>: <span class="string">"dishes"</span>
                 }
             ]
@@ -346,7 +346,7 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
     ]
 }</code></pre>
 <h3 id='menus/get-menus-id'>GET /menus/{id}</h3 id='menus/get-menus-id'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/menus/31729?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <p><strong>Notes</strong>
@@ -386,21 +386,21 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
     <span class="string">"first_page_full_height"</span>: <span class="number">4686</span>,
     <span class="string">"links"</span>: [
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus"</span>,
             <span class="string">"rel"</span>: <span class="string">"index"</span>
         },
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/31729/pages"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/31729/pages"</span>,
             <span class="string">"rel"</span>: <span class="string">"pages"</span>
         },
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/31729/dishes"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/31729/dishes"</span>,
             <span class="string">"rel"</span>: <span class="string">"dishes"</span>
         }
     ]
 }</code></pre>
 <h3 id='menus/get-menus-id-pages'>GET /menus/{id}/pages</h3 id='menus/get-menus-id-pages'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/menus/31729/pages?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729/pages?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <p><strong>Notes</strong>
@@ -416,11 +416,11 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
 <pre><code class="json">{
     <span class="string">"links"</span>: [
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/31729"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/31729"</span>,
             <span class="string">"rel"</span>: <span class="string">"parent"</span>
         },
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus"</span>,
             <span class="string">"rel"</span>: <span class="string">"index"</span>
         }
     ],
@@ -449,7 +449,7 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
                     <span class="string">"updated_at"</span>: <span class="string">"2012-07-03T20:28:37Z"</span>,
                     <span class="string">"links"</span>: [
                         {
-                            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes/375814"</span>,
+                            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/375814"</span>,
                             <span class="string">"rel"</span>: <span class="string">"self"</span>
                         }
                     ]
@@ -465,7 +465,7 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
     ]
 }</code></pre>
 <h3 id='menus/get-menus-id-dishes'>GET /menus/{id}/dishes</h3 id='menus/get-menus-id-dishes'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/menus/31729/dishes?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729/dishes?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <p><strong>Notes</strong>
@@ -479,11 +479,11 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
 <pre><code class="json">{    
     <span class="string">"links"</span>: [
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/31729"</span>, 
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/31729"</span>, 
             <span class="string">"rel"</span>: <span class="string">"parent"</span>
         }, 
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus"</span>, 
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus"</span>, 
             <span class="string">"rel"</span>: <span class="string">"index"</span>
         }
     ],
@@ -498,7 +498,7 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
               <span class="string">"updated_at"</span>: <span class="string">"2012-07-03T20:28:37Z"</span>,
             <span class="string">"links"</span>: [
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes/139476"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/139476"</span>,
                     <span class="string">"rel"</span>: <span class="string">"self"</span>
                 }
             ]
@@ -509,7 +509,7 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
     ]
 }</code></pre>
 <h3 id='menus/get-menus-search'>GET /menus/search</h3 id='menus/get-menus-search'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/menus/search?query=dinner&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/search?query=dinner&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span>
 query: <span class="string">"?query="</span></code></pre>
@@ -559,15 +559,15 @@ query: <span class="string">"?query="</span></code></pre>
             <span class="string">"first_page_full_height"</span>: <span class="number">5186</span>,
             <span class="string">"links"</span>: [
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/29387"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/29387"</span>,
                     <span class="string">"rel"</span>: <span class="string">"self"</span>
                 },
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/29387/pages"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/29387/pages"</span>,
                     <span class="string">"rel"</span>: <span class="string">"pages"</span>
                 },
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/29387/dishes"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/29387/dishes"</span>,
                     <span class="string">"rel"</span>: <span class="string">"dishes"</span>
                 }
             ]
@@ -579,7 +579,7 @@ query: <span class="string">"?query="</span></code></pre>
 }</code></pre>
 <h2 id='dishes'>Dishes</h2 id='dishes'>
 <h3 id='dishes/get-dishes'>GET /dishes</h3 id='dishes/get-dishes'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/dishes?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>possible query parameters</h4>
@@ -614,11 +614,11 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
             <span class="string">"highest_price"</span>: <span class="keyword">null</span>,
             <span class="string">"links"</span>: [
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes/351645"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/351645"</span>,
                     <span class="string">"rel"</span>: <span class="string">"self"</span>
                 },
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes/351645/menus"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/351645/menus"</span>,
                     <span class="string">"rel"</span>: <span class="string">"menus"</span>
                 }
             ]
@@ -629,7 +629,7 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
     ]
 }</code></pre>
 <h3 id='dishes/get-dishes-id'>GET /dishes/{id}</h3 id='dishes/get-dishes-id'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/dishes/329313?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/329313?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <p><strong>Notes</strong>
@@ -652,17 +652,17 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
     <span class="string">"highest_price"</span>: <span class="string">"<span class="variable">$0</span>.10"</span>,
     <span class="string">"links"</span>: [
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes"</span>,
             <span class="string">"rel"</span>: <span class="string">"index"</span>
         },
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes/329313/menus"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/329313/menus"</span>,
             <span class="string">"rel"</span>: <span class="string">"menus"</span>
         }
     ]
 }</code></pre>
 <h3 id='dishes/get-dishes-id-menus'>GET /dishes/{id}/menus</h3 id='dishes/get-dishes-id-menus'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/dishes/195/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/195/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <p><strong>Notes</strong>
@@ -675,11 +675,11 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
 <pre><code class="json">{
     <span class="string">"links"</span>: [
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes/195"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/195"</span>,
             <span class="string">"rel"</span>: <span class="string">"parent"</span>
         },
         {
-            <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes"</span>,
+            <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes"</span>,
             <span class="string">"rel"</span>: <span class="string">"index"</span>
         }
     ],
@@ -714,7 +714,7 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
             <span class="string">"first_page_full_height"</span>: <span class="number">3233</span>,
             <span class="string">"links"</span>: [
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/menus/16674"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/menus/16674"</span>,
                     <span class="string">"rel"</span>: <span class="string">"self"</span>
                 }
             ]
@@ -725,7 +725,7 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
     ] 
 }</code></pre>
 <h3 id='dishes/get-dishes-search'>GET /dishes/search</h3 id='dishes/get-dishes-search'>
-<pre><code class="bash">$ curl <span class="string">"http://menus.nypl.org/api/dishes/search?query=knish&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/search?query=knish&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
 <h4>required query parameters</h4>
 <pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span>
 query: <span class="string">"?query="</span></code></pre>
@@ -757,11 +757,11 @@ query: <span class="string">"?query="</span></code></pre>
             <span class="string">"highest_price"</span>: <span class="keyword">null</span>,
             <span class="string">"links"</span>: [
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes/153405"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/153405"</span>,
                     <span class="string">"rel"</span>: <span class="string">"self"</span>
                 },
                 {
-                    <span class="string">"href"</span>: <span class="string">"http://menus.nypl.org/api/dishes/153405/menus"</span>,
+                    <span class="string">"href"</span>: <span class="string">"http://api.menus.nypl.org/dishes/153405/menus"</span>,
                     <span class="string">"rel"</span>: <span class="string">"menus"</span>
                 }
             ]
