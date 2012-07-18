@@ -101,6 +101,8 @@ X-Ratelimit-Limit: 5000
 X-Ratelimit-Remaining: 4932
 ```
 
+*X-Ratelimit-Remaining* is determined by the number of requests left on your API token (not IP address).
+
 ##Authentication
 
 ####Basic Auth
