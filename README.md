@@ -36,7 +36,7 @@ Eventually, there will be a sign-up site for obtaining tokens and getting update
 ####example curl
 
 ```bash
-curl "http://api.menus.nypl.org/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4"
+curl "http://api.menus.nypl.org/menus/12848.xml?token={YOUR_API_TOKEN}"
 ```
 
 ####example xml response
@@ -94,7 +94,7 @@ curl "http://api.menus.nypl.org/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4
 We limit requests to **5000 per day** either per token or per IP address and to **2 requests per second**. You can check the returned HTTP headers of any API request to see your current status:
 
 ```bash
-curl -i "http://api.menus.nypl.org/dishes/13?token=flillduynijyk2u6zemo36mcg4"
+curl -i "http://api.menus.nypl.org/dishes/13?token={YOUR_API_TOKEN}"
 HTTP/1.1 200 OK 
 Content-Type: application/json
 X-Ratelimit-Limit: 5000
@@ -126,7 +126,7 @@ Pagination Info is Contained in the Link **Header** for Indexes
 ####example curl
 
 ```bash
-curl -i "http://api.menus.nypl.org/dishes?page=3&token=flillduynijyk2u6zemo36mcg4"
+curl -i "http://api.menus.nypl.org/dishes?page=3&token={YOUR_API_TOKEN}"
 ```
 
 ####example Link Header
@@ -145,13 +145,13 @@ For examples on how to parse the **link header**, [this gist](https://gist.githu
 ###GET /menus
  
 ```bash
-$ curl "http://api.menus.nypl.org/menus?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/menus?token={YOUR_API_TOKEN}"
 ```
 	
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
+token: "?token={YOUR_API_TOKEN}"
 ```
 	
 ####possible query parameters
@@ -239,13 +239,13 @@ status: "?status=under_review" || "?status=complete" || "?status=to_transcribe"
 ###GET /menus/{id}
 
 ```bash
-$ curl "http://api.menus.nypl.org/menus/31729?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/menus/31729?token={YOUR_API_TOKEN}"
 ```
 	
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
+token: "?token={YOUR_API_TOKEN}"
 ```
 	
 **Notes**
@@ -303,13 +303,13 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /menus/{id}/pages
 
 ```bash
-$ curl "http://api.menus.nypl.org/menus/31729/pages?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/menus/31729/pages?token={YOUR_API_TOKEN}"
 ```
 	
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
+token: "?token={YOUR_API_TOKEN}"
 ```
 	
 **Notes**
@@ -378,13 +378,13 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /menus/{id}/dishes
 
 ```bash
-$ curl "http://api.menus.nypl.org/menus/31729/dishes?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/menus/31729/dishes?token={YOUR_API_TOKEN}"
 ```
 	
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
+token: "?token={YOUR_API_TOKEN}"
 ```
 
 **Notes**
@@ -432,14 +432,14 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /menus/search
 
 ```bash
-$ curl "http://api.menus.nypl.org/menus/search?query=dinner&token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/menus/search?query=dinner&token={YOUR_API_TOKEN}"
 ```
 	
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
-query: "?query="
+token: "?token={YOUR_API_TOKEN}"
+query: "?query={YOUR_SEARCH}"
 ```
 
 ####possible query parameters
@@ -518,13 +518,13 @@ sort_by: "?sort_by=date" || "?sort_by=name" || "?sort_by=relevance" || "?sort_by
 ###GET /dishes 
 
 ```bash
-$ curl "http://api.menus.nypl.org/dishes?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/dishes?token={YOUR_API_TOKEN}"
 ```
 	
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
+token: "?token={YOUR_API_TOKEN}"
 ```
 	
 ####possible query parameters
@@ -582,13 +582,13 @@ sort_by: "?sort_by=name" || "?sort_by=date" || "?sort_by=popularity" || "?sort_b
 ###GET /dishes/{id}
 
 ```bash
-$ curl "http://api.menus.nypl.org/dishes/329313?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/dishes/329313?token={YOUR_API_TOKEN}"
 ```
 	
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
+token: "?token={YOUR_API_TOKEN}"
 ```
 	
 **Notes**
@@ -625,13 +625,13 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /dishes/{id}/menus
 
 ```bash
-$ curl "http://api.menus.nypl.org/dishes/195/menus?token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/dishes/195/menus?token={YOUR_API_TOKEN}"
 ```
 	
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
+token: "?token={YOUR_API_TOKEN}"
 ```
 	
 **Notes**
@@ -699,14 +699,14 @@ token: "?token=flillduynijyk2u6zemo36mcg4"
 ###GET /dishes/search
 
 ```bash
-$ curl "http://api.menus.nypl.org/dishes/search?query=knish&token=flillduynijyk2u6zemo36mcg4"
+$ curl "http://api.menus.nypl.org/dishes/search?query=knish&token={YOUR_API_TOKEN}"
 ```
 
 ####required query parameters
 
 ```javascript	
-token: "?token=flillduynijyk2u6zemo36mcg4"
-query: "?query="
+token: "?token={YOUR_API_TOKEN}"
+query: "?query={YOUR_SEARCH}"
 ```
 
 ####possible query parameters

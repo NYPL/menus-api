@@ -177,7 +177,7 @@
 
 </p>
 <h4>example curl</h4>
-<pre><code class="bash">curl <span class="string">"http://api.menus.nypl.org/menus/12848.xml?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">curl <span class="string">"http://api.menus.nypl.org/menus/12848.xml?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>example xml response</h4>
 <pre><code class="xml"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="tag">&lt;<span class="title">menu</span>></span>
@@ -227,7 +227,7 @@
 <p>We limit requests to <strong>5000 per day</strong> either per token or per IP address and to <strong>2 requests per second</strong>. You can check the returned HTTP headers of any API request to see your current status:
 
 </p>
-<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes/13?token=flillduynijyk2u6zemo36mcg4"</span>
+<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes/13?token={YOUR_API_TOKEN}"</span>
 HTTP/<span class="number">1.1</span> <span class="number">200</span> OK 
 Content-Type: application/json
 X-Ratelimit-Limit: <span class="number">5000</span>
@@ -258,7 +258,7 @@ X-Ratelimit-Remaining: <span class="number">4932</span></code></pre>
 <li>if you attempt to access a page beyond the <strong>last</strong> page, you&#39;ll be returned an empty array of objects</li>
 </ul>
 <h4>example curl</h4>
-<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes?page=3&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">curl -i <span class="string">"http://api.menus.nypl.org/dishes?page=3&amp;token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>example Link Header</h4>
 <pre><code class="bash">&lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">1</span>>; rel=<span class="string">"first"</span>, 
 &lt;http://api.menus.nypl.org/dishes?sort_by=date&amp;per_page=<span class="number">100</span>&amp;page=<span class="number">2</span>>; rel=<span class="string">"prev"</span>, 
@@ -269,9 +269,9 @@ X-Ratelimit-Remaining: <span class="number">4932</span></code></pre>
 </p>
 <h2 id='menus'>Menus</h2 id='menus'>
 <h3 id='menus/get-menus'>GET /menus</h3 id='menus/get-menus'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>possible query parameters</h4>
 <pre><code class="javascript">min_year: <span class="string">"?min_year=1947"</span>
 max_year: <span class="string">"?max_year=1950"</span> 
@@ -349,9 +349,9 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
     ]
 }</code></pre>
 <h3 id='menus/get-menus-id'>GET /menus/{id}</h3 id='menus/get-menus-id'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span></code></pre>
 <p><strong>Notes</strong>
 
 </p>
@@ -403,9 +403,9 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
     ]
 }</code></pre>
 <h3 id='menus/get-menus-id-pages'>GET /menus/{id}/pages</h3 id='menus/get-menus-id-pages'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729/pages?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729/pages?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span></code></pre>
 <p><strong>Notes</strong>
 
 </p>
@@ -468,9 +468,9 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
     ]
 }</code></pre>
 <h3 id='menus/get-menus-id-dishes'>GET /menus/{id}/dishes</h3 id='menus/get-menus-id-dishes'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729/dishes?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/31729/dishes?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span></code></pre>
 <p><strong>Notes</strong>
 
 </p>
@@ -512,10 +512,10 @@ status: <span class="string">"?status=under_review"</span> || <span class="strin
     ]
 }</code></pre>
 <h3 id='menus/get-menus-search'>GET /menus/search</h3 id='menus/get-menus-search'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/search?query=dinner&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/menus/search?query=dinner&amp;token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span>
-query: <span class="string">"?query="</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span>
+query: <span class="string">"?query={YOUR_SEARCH}"</span></code></pre>
 <h4>possible query parameters</h4>
 <pre><code class="javascript">sort_by: <span class="string">"?sort_by=date"</span> || <span class="string">"?sort_by=name"</span> || <span class="string">"?sort_by=relevance"</span> || <span class="string">"?sort_by=dish_count"</span></code></pre>
 <p><strong>Notes</strong>
@@ -582,9 +582,9 @@ query: <span class="string">"?query="</span></code></pre>
 }</code></pre>
 <h2 id='dishes'>Dishes</h2 id='dishes'>
 <h3 id='dishes/get-dishes'>GET /dishes</h3 id='dishes/get-dishes'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>possible query parameters</h4>
 <pre><code class="javascript">min_year: <span class="string">"?min_year=1947"</span>
 max_year: <span class="string">"?max_year=1950"</span> 
@@ -632,9 +632,9 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
     ]
 }</code></pre>
 <h3 id='dishes/get-dishes-id'>GET /dishes/{id}</h3 id='dishes/get-dishes-id'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/329313?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/329313?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span></code></pre>
 <p><strong>Notes</strong>
 
 </p>
@@ -665,9 +665,9 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
     ]
 }</code></pre>
 <h3 id='dishes/get-dishes-id-menus'>GET /dishes/{id}/menus</h3 id='dishes/get-dishes-id-menus'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/195/menus?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/195/menus?token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span></code></pre>
 <p><strong>Notes</strong>
 
 </p>
@@ -728,10 +728,10 @@ sort_by: <span class="string">"?sort_by=name"</span> || <span class="string">"?s
     ] 
 }</code></pre>
 <h3 id='dishes/get-dishes-search'>GET /dishes/search</h3 id='dishes/get-dishes-search'>
-<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/search?query=knish&amp;token=flillduynijyk2u6zemo36mcg4"</span></code></pre>
+<pre><code class="bash">$ curl <span class="string">"http://api.menus.nypl.org/dishes/search?query=knish&amp;token={YOUR_API_TOKEN}"</span></code></pre>
 <h4>required query parameters</h4>
-<pre><code class="javascript">token: <span class="string">"?token=flillduynijyk2u6zemo36mcg4"</span>
-query: <span class="string">"?query="</span></code></pre>
+<pre><code class="javascript">token: <span class="string">"?token={YOUR_API_TOKEN}"</span>
+query: <span class="string">"?query={YOUR_SEARCH}"</span></code></pre>
 <h4>possible query parameters</h4>
 <pre><code class="javascript">sort_by: <span class="string">"?sort_by=date"</span> || <span class="string">"?sort_by=name"</span> || <span class="string">"?sort_by=relevance"</span> || <span class="string">"?sort_by=popularity"</span> || <span class="string">"?sort_by=obscurity"</span></code></pre>
 <p><strong>Notes</strong>
