@@ -31,7 +31,7 @@ For this initial, beta release, please email [menusATnyplDOT.org](mailto:menus@n
 Eventually, there will be a sign-up site for obtaining tokens and getting updates on the service.
 
 ##Formats
-**JSON** is the default and recommended response format for the service. You can obtain the response in **XML** by appending *.xml.* to the call.
+**JSON** is the default and recommended response format for the service. You can obtain the response in **XML** by appending .xml. to the call.
 
 ####example curl
 
