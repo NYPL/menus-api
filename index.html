@@ -232,7 +232,7 @@ HTTP/<span class="number">1.1</span> <span class="number">200</span> OK
 Content-Type: application/json
 X-Ratelimit-Limit: <span class="number">5000</span>
 X-Ratelimit-Remaining: <span class="number">4932</span></code></pre>
-<p><em>X-Ratelimit-Remaining</em> is determined by the number of requests left on your API token (not IP address).
+<p><em>X-Ratelimit-Remaining</em> is determined by the number of requests left on your API token and decremented on all request, whatever the response may be.
 
 </p>
 <h2 id='authentication'>Authentication</h2 id='authentication'>
