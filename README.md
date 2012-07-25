@@ -1,7 +1,7 @@
 #Menus Beta API v1
 
 ##What Is This?
-There's a lot of data behind The New York Public Library's [What's On The Menu?](http://menus.nypl.org), and here's your chance to explore it. This is built for programmers and power-users, so if you're looking for an easier way to explore the dataset you may want to take a look at our [Biweekly data exports](http://menus.nypl.org/data). However if you're looking to do powerful analysis of historical menu data, this is the tool for you.
+There's a lot of data behind The New York Public Library's [What's On The Menu?](http://menus.nypl.org), and here's your chance to explore it. This is built for programmers and power-users, so if you're looking for an easier way to explore the dataset you may want to take a look at our [Biweekly data exports](http://menus.nypl.org/data), which are in CSV format. However if you're looking to do powerful analysis of historical menu data, this is the tool for you.
 
 If you haven't worked with an API before, this [REST API tutorial](http://www.restapitutorial.com/) is a great place to start. 
 
