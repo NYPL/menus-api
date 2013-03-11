@@ -65,9 +65,7 @@ curl "http://api.menus.nypl.org/menus/12848.xml?token={YOUR_API_TOKEN}"
   <page-count type="integer">2</page-count>
   <dish-count type="integer">60</dish-count>
   <thumbnail-src>http://images.nypl.org/index.php?id=466635&amp;t=r</thumbnail-src>
-  <thumbnail-src-jp2>http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:510d47db-463f-a3d9-e040-e00a18064a99&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=108,108&amp;svc.region=576,240,1735,1735&amp;svc.rotate=0</thumbnail-src-jp2>
   <large-src>http://images.nypl.org/index.php?id=466635&amp;t=w</large-src>
-  <large-src-jp2>http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&amp;rft_id=urn:uuid:510d47db-463f-a3d9-e040-e00a18064a99&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&amp;svc.format=image/jpeg&amp;svc.scale=1800,0&amp;svc.rotate=0</large-src-jp2>
   <first-page-aspect>portrait</first-page-aspect>
   <first-page-full-width type="integer">2215</first-page-full-width>
   <first-page-full-height type="integer">2887</first-page-full-height>
@@ -208,9 +206,7 @@ status: "?status=under_review" || "?status=complete" || "?status=to_transcribe"
             "page_count": 5,
             "dish_count": 51,
             "thumbnail_src": "http://images.nypl.org/index.php?id=3884434&t=r",
-            "thumbnail_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:a7df725e-b834-322f-e040-e00a18063d14&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=108,108&svc.region=1249,240,2479,2479&svc.rotate=0",
             "large_src": "http://images.nypl.org/index.php?id=3884434&t=w",
-            "large_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:a7df725e-b834-322f-e040-e00a18063d14&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=1800,0&svc.rotate=0",
             "first_page_aspect": "portrait",
             "first_page_full_width": 2959,
             "first_page_full_height": 4978,
@@ -277,9 +273,7 @@ token: "?token={YOUR_API_TOKEN}"
     "page_count": 2,
     "dish_count": 168,
     "thumbnail_src": "http://images.nypl.org/index.php?id=4029915&t=r",
-    "thumbnail_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:bf8b24be-cb02-4876-e040-e00a1806540b&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=108,108&svc.region=627,240,3431,3431&svc.rotate=0",
     "large_src": "http://images.nypl.org/index.php?id=4029915&t=w",
-    "large_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:bf8b24be-cb02-4876-e040-e00a1806540b&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=1800,0&svc.rotate=0",
     "first_page_aspect": "portrait",
     "first_page_full_width": 3911,
     "first_page_full_height": 4686,
@@ -344,9 +338,7 @@ token: "?token={YOUR_API_TOKEN}"
             "aspect": "portrait",
             "small_src": "http://images.nypl.org/index.php?id=4029915&t=t",
             "thumbnail_src": "http://images.nypl.org/index.php?id=4029915&t=r",
-            "thumbnail_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:bf8b24be-cb02-4876-e040-e00a1806540b&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=108,108&svc.region=627,240,3431,3431&svc.rotate=0",
             "large_src": "http://images.nypl.org/index.php?id=4029915&t=w",
-            "large_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:bf8b24be-cb02-4876-e040-e00a1806540b&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=1800,0&svc.rotate=0",
             "dishes": [
                 {
 					"name": "Eaux minerales la bout",
@@ -484,9 +476,7 @@ sort_by: "?sort_by=date" || "?sort_by=name" || "?sort_by=relevance" || "?sort_by
             "page_count": 4,
             "dish_count": 102,
             "thumbnail_src": "http://images.nypl.org/index.php?id=3953786&t=r",
-            "thumbnail_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:ae6c1dd9-59b7-f55a-e040-e00a18062565&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=108,108&svc.region=733,240,3720,3720&svc.rotate=0",
             "large_src": "http://images.nypl.org/index.php?id=3953786&t=w",
-            "large_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:ae6c1dd9-59b7-f55a-e040-e00a18062565&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=1800,0&svc.rotate=0",
             "first_page_aspect": "portrait",
             "first_page_full_width": 4200,
             "first_page_full_height": 5186,
@@ -676,9 +666,7 @@ token: "?token={YOUR_API_TOKEN}"
             "page_count": 2,
             "dish_count": 13,
             "thumbnail_src": "http://images.nypl.org/index.php?id=468654&t=r",
-            "thumbnail_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:510d47db-515d-a3d9-e040-e00a18064a99&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=108,108&svc.region=696,240,1841,1841&svc.rotate=0",
             "large_src": "http://images.nypl.org/index.php?id=468654&t=w",
-            "large_src_jp2": "http://j2k.repo.nypl.org/adore-djatoka/resolver?url_ver=Z39.88-2004&rft_id=urn:uuid:510d47db-515d-a3d9-e040-e00a18064a99&svc_id=info:lanl-repo/svc/getRegion&svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000&svc.format=image/jpeg&svc.scale=1800,0&svc.rotate=0",
             "first_page_aspect": "portrait",
             "first_page_full_width": 2321,
             "first_page_full_height": 3233,
